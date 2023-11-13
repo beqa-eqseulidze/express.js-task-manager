@@ -4,17 +4,22 @@ const {
     createTasks,
     getByid,
     updateTask,
-    deleteTasks}=require('../controlers/tasks')
+    deleteTasks
+    }=require('../controlers/tasks')
 const router=express.Router();
 
-router.route('/').get(getAllTasks);
-router.route('/').post(createTasks);
 
-router.route('/:id').get(getByid);
-router.route('/:id').patch(updateTask);
-router.route('/:id').delete(deleteTasks);
-// ზედა სამი იგივეა რაც ეს ერთი
-// router.route('/:id').get(getByid).patch(updateTask).delete(deleteTasks)
+// ქვედა ორი იგივეა რაც ეს ერთი
+router.route('/api/v1/saqme').get(getAllTasks).post(createTasks);
+// router.route('/api/v1/tasks').get(getAllTasks);
+// router.route('/api/v1/tasks').post(createTasks);
+
+//ქვედა სამი იგივეა რაც ეს ერთი
+router.route('/:id').get(getByid).patch(updateTask).delete(deleteTasks)
+
+// router.route('/api/v1/tasks/:id').get(getByid);
+// router.route('/api/v1/tasks/:id').patch(updateTask);
+// router.route('/api/v1/tasks/:id').delete(deleteTasks);
 
 
 

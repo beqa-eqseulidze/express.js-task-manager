@@ -1,20 +1,27 @@
-console.log('tast manager beqa')
+require('dotenv').config()
 const express=require('express');
 const app=express();
-const tasks=require('./routes/tastks')
+const tasks=require('./routes/tastks');
+const ConnnectionDb= require('./controlers/db/connect');
+
 
 //midlleware
-// app.use(express.json())
+app.use(express.json());
 
-app.use('/api/v1/tasks',tasks)
+app.use('',tasks);
 
 
 
-// app.get('api/v1/tasks')
-// app.post('api/v1/tasks')
-// app.get('api/v1/tasks/:id')
-// app.patch('api/v1/tasks/:id')
-// app.delete('api/v1/tasks/:id')
-
-const port=3000;
-app.listen(port, console.log('server listening on port '+port+'...'))
+const start= async()=>{
+    try{
+        const uri=process.env.DB_CONNECTION_STR
+        await ConnnectionDb(uri);
+        const port=3000;
+        app.listen(port, console.log('server listening on port '+port+'...'));
+    }
+    catch(error){
+        console.log(error.message)
+    }
+   
+}
+start()

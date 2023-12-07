@@ -1,8 +1,8 @@
 
 const mongoose=require('mongoose')
 
-const ConnnectionDb=(uri)=>{
-  return  mongoose.connect(uri,{ useNewUrlParser:true,useUnifiedTopology:true })
+const ConnectionDb=(uri)=>{
+  return  mongoose.connect(uri,{ useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true})
     
 }
-module.exports=ConnnectionDb   
+module.exports=ConnectionDb   
